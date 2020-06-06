@@ -16,11 +16,11 @@ var ingredients = {
 
 //Current state of the ingredients in the burger
 var state = {
-  Patty: true,
-  Cheese: true,
-  Tomatoes: true,
-  Onions: true,
-  Lettuce: true
+  Patty: false,
+  Cheese: false,
+  Tomatoes: false,
+  Onions: false,
+  Lettuce: false
 };
 
 // This function renders the entire screen everytime the state changes accordingly
@@ -32,43 +32,63 @@ function renderAll() {
   renderLettuce();
   renderButtons();
   renderIngredientsBoard();
-  
-  
   renderPrice();
 }
 
 function renderPatty() {
   let $patty = document.querySelector("#patty");
+  
   //you can also use getElementById
-  if (state.Patty) {
+  if (state.Patty) 
+  {
     $patty.style.display = "inherit";
-  } else {
+    var element = document.querySelector(".btn-patty");
+    element.classList.add("active");
+  } 
+  else 
+  {
     $patty.style.display = "none";
+    var element = document.querySelector(".btn-patty");
+    element.classList.remove("active");
   }
 }
 
 function renderCheese() 
 {
   let $cheese = document.querySelector("#cheese");
+ 
   if(state.Cheese)
   {
     $cheese.style.display = "inherit";
+    var element = document.querySelector(".btn-cheese");
+    element.classList.add("active");
+
   }
   else{
     $cheese.style.display = "none";
+    var element = document.querySelector(".btn-cheese");
+    element.classList.remove("active");
+
   }
 }
 
 function renderTomatoes() 
 {
   let $tomato = document.querySelector("#tomato");
+
   if(state.Tomatoes)
   {
     $tomato.style.display = "inherit";
+    var element = document.querySelector(".btn-tomatoes");
+    element.classList.add("active");
+
   }
   else
   {
     $tomato.style.display = "none";
+    var element = document.querySelector(".btn-tomatoes");
+    element.classList.remove("active");
+
   }
   
 }
@@ -76,13 +96,20 @@ function renderTomatoes()
 function renderOnions() 
 {
   let $onion = document.querySelector("#onion");
+
   if(state.Onions)
   {
     $onion.style.display = "inherit";
+    var element = document.querySelector(".btn-onions");
+    element.classList.add("active");
+
   }
   else
   {
     $onion.style.display = "none";
+    var element = document.querySelector(".btn-onions");
+    element.classList.remove("active");
+
   }
   
 }
@@ -90,13 +117,20 @@ function renderOnions()
 function renderLettuce() 
 {
   let $lettuce = document.querySelector("#lettuce");
+
   if(state.Lettuce)
   {
     $lettuce.style.display = "inherit";
+    var element = document.querySelector(".btn-lettuce");
+    element.classList.add("active");
+
   }
   else
   {
     $lettuce.style.display = "none";
+    var element = document.querySelector(".btn-lettuce");
+    element.classList.remove("active");
+ 
   }
   
 }
@@ -137,16 +171,82 @@ document.querySelector(".btn-lettuce").onclick = function()
 //Challenge 1 - Add/Remove the class active to the buttons based on state
 function renderButtons()
 {
- 
+  renderPatty();
+  renderCheese();
+  renderTomatoes();
+  renderOnions();
+  renderLettuce();
 }
 
 //Challenge 2 - Render only the items selected in the ingredients board based on the state
 
 function renderIngredientsBoard()
 {
+  var x = document.getElementsByClassName("items");
+ 
+    if(state.Patty)
+      x[0].style.display = "inherit";
+    else
+      x[0].style.display = "none";
+
+     if(state.Cheese)
+      x[1].style.display = "inherit";
+    else
+      x[1].style.display = "none";
+
+    if(state.Tomatoes)
+      x[2].style.display = "inherit";
+    else
+      x[2].style.display = "none";
+
+    if(state.Onions)
+      x[3].style.display = "inherit";
+    else
+      x[3].style.display = "none";
+
+    if(state.Lettuce)
+      x[4].style.display = "inherit";
+    else
+      x[4].style.display = "none";
+
   
-    
+    // for(var i = 0; i < state1.length; i++)
+    // {
+    //   if(state1[i])
+    //     x[i].style.display = "inherit";
+
+    //   else
+    //     x[i].style.display = "none";
+    // }
+
 }
+
 //Judgement 1
 //In the p element having price-details as the class, display the calculated
 //price based on ingredients
+
+function renderPrice()
+{
+  const submitButton = document.querySelector(".Rectangle5");
+  var sum = 0;
+  //var msg = INR;
+  if(state.Patty)
+    sum = sum + parseInt(ingredients.Patty);
+
+  if(state.Cheese)
+    sum = sum + parseInt(ingredients.Cheese);
+
+  if(state.Tomatoes)
+    sum = sum + parseInt(ingredients.Tomatoes);
+
+  if(state.Onions)
+    sum = sum + parseInt(ingredients.Onions);
+
+  if(state.Lettuce)
+    sum = sum + parseInt(ingredients.Lettuce);
+
+  submitButton.onclick = (evt) =>
+  {
+    document.querySelector(".price-details").innerHTML = sum;
+  }
+}

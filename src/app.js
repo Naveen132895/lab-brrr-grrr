@@ -33,7 +33,7 @@ function renderAll() {
   renderButtons();
   renderIngredientsBoard();
   renderPrice();
-}
+} 
 
 function renderPatty() {
   let $patty = document.querySelector("#patty");
@@ -41,13 +41,13 @@ function renderPatty() {
   //you can also use getElementById
   if (state.Patty) 
   {
-    $patty.style.display = "inherit";
+    $patty.style.display = "inherit";//true
     var element = document.querySelector(".btn-patty");
     element.classList.add("active");
   } 
   else 
   {
-    $patty.style.display = "none";
+    $patty.style.display = "none";//false
     var element = document.querySelector(".btn-patty");
     element.classList.remove("active");
   }
@@ -185,7 +185,7 @@ function renderIngredientsBoard()
   var x = document.getElementsByClassName("items");
  
     if(state.Patty)
-      x[0].style.display = "inherit";
+      x[0].style.display = "inherit";//display
     else
       x[0].style.display = "none";
 
